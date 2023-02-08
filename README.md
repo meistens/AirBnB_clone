@@ -1,10 +1,10 @@
 # AirBnB_clone
 
-## Description
-AirBnB shell interpreter written in Python.
+## Project Description
+This project is an AirBnB_clone command interpreter written in Python. The interpreter allows a user to input commands and interact with the program.
 
 ## Command Interpreter
-The command interpreter is a program that allows one enter commands and executes those same commands. Think of it as a terminal interface to a program (but it is not per se). Unlike a GUI, commands run are purely text keyed in.
+The command interpreter is a text-based interface that allows users to enter and execute commands. Think of it as a terminal interface to a program.
 
 Here, in the AirBnB clone, the interpreter will be used to manage the objects created, like the following:
 
@@ -16,9 +16,30 @@ Here, in the AirBnB clone, the interpreter will be used to manage the objects cr
 
 ### How to Start The Interpreter
 TBA
+THe shell can be started interactively and non-interactively.
+
+#### Interactive way
+``` sh
+./hbnb
+```
+
+#### Non-interactive way
+``` sh
+test
+```
+
 
 ### How To Use It
 TBA
 
 ### Examples
 TBA
+
+### Contact Information
+TBA or check the AUTHORS file
+
+### License Information
+Check licenses
+
+### Acknowledgements
+ALX
