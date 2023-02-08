@@ -12,7 +12,8 @@ Write a class `BaseModel` that defines all common attributes/methods for other c
        - `created_at`: datetime - assign with the current datetime when an instance is created
        - `updated_at`: datetime - assign with the current datetime when an instance is created and it will be updated every time you change your object
        
-    `__str__`: should print: `[<class name>] (<self.id>) <self.__dict__>`
+   - <u>__str__</u>: should print: `[<class name>] (<self.id>) <self.__dict__>`
+    
    - Public instance methods:
        - `save(self)`: updates the public instance attribute `updated_at` with the current datetime
        - `to_dict(self)`: returns a dictionary containing all keys/values of `__dict__` of the instance:
@@ -22,3 +23,6 @@ Write a class `BaseModel` that defines all common attributes/methods for other c
                - format: `%Y-%m-%dT%H:%M:%S.%f` (ex: `2017-06-14T22:31:03.285259`)
                - you can use `isoformat()` of `datetime` object
            - This method will be the first piece of the serialization/deserialization process: create a dictionary representation with “simple object type” of our `BaseModel`
+
+### Diagram
+![[~/Project_Notes/ALX_AirBnB_Clone/UML2023-02-08 11.00.48.excalidraw.md]]
