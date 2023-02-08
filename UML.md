@@ -25,4 +25,4 @@ Write a class `BaseModel` that defines all common attributes/methods for other c
            - This method will be the first piece of the serialization/deserialization process: create a dictionary representation with “simple object type” of our `BaseModel`
 
 ### Diagram
-![UML BaseModel](https://ibb.co/gWvy1fb)
+[![BaseModel Class](https://i.postimg.cc/hP7gzvRr/UML2023-02-08-11-00-48-excalidraw.png)](https://postimg.cc/1fPbb9tn)
