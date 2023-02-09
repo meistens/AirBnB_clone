@@ -51,3 +51,14 @@ class BaseModel_test(unittest.TestCase):
         attr.number = 3
         self.assertIn("name", attr.to_dict())
         self.assertIn("number", attr.to_dict())
+
+    def test_kwargs(self):
+        """Test kwargs arttributes (the script won't cut it)"""
+        kwargs = BaseModel()
+        kwargs.name = "foo"
+        kwargs.number = 3
+        jsonModel = kwargs.to_dict()
+        kwargs2 = BaseModel(**jsonModel)
+        self.assertTrue(isinstance(kwargs2, BaseModel))
+        self.assertTrue(isinstance(jsonModel, dict))
+        self.assertTrue(kwargs is not kwargs2)
