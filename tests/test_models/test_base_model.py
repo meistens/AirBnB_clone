@@ -31,3 +31,23 @@ class BaseModel_test(unittest.TestCase):
         uuid_2 = BaseModel()
         self.assertNotEqual(uuid_1.id, uuid_2.id)
 
+    def test_dict(self):
+        """Tests if dict is a dictionary """
+        serial = BaseModel()
+        self.assertTrue(dict, type(serial.to_dict()))
+
+    def test_keys(self):
+        """Tests if to_dict has the right keys"""
+        keys = BaseModel()
+        self.assertIn("id", keys.to_dict())
+        self.assertIn("__class__", keys.to_dict())
+        self.assertIn("created_at", keys.to_dict())
+        self.assertIn("updated_at", keys.to_dict())
+
+    def test_attrs(self):
+        """Tests if to_dict has the right attributes"""
+        attr = BaseModel()
+        attr.name = "foo"
+        attr.number = 3
+        self.assertIn("name", attr.to_dict())
+        self.assertIn("number", attr.to_dict())
