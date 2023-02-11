@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = args.split()
-        if not len(args):
+        if len(args) == 1:
             print("** instance id missing **")
             return
         class_name = args[0]
@@ -54,6 +54,25 @@ class HBNBCommand(cmd.Cmd):
             return
         print(storage.all()[key])
 
+    def do_destroy(self, args):
+        """Destroy/delete an instance based on the given class name and id from the JSON file given"""
+        if not args:
+            print("** class name missing **")
+            return
+        class_name = args[0]
+        if class_name != "BaseModel":
+            print("** class doesn't exist **")
+            return
+        args = args.split()
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        key = "{}.{}".format(class_name, args[1])
+        if key in storage.all():
+            del storage.all()[key]
+            storage.save()
+        else:
+            print("** no instance found **")
         
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
