@@ -3,8 +3,10 @@
 from models.base_model import BaseModel
 import json
 
+
 class FileStorage():
-    """A private class for the serialization and deserialization class of objects to a JSON file"""
+    """A private class for the serialization and deserialization class of"\
+    "objects to a JSON file"""
     __file_path = "file.json"
     __objects = {}
 
@@ -13,7 +15,8 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        """Sets an object in the __objects dictionary with a key of <obj class name>.id"""
+        """Sets an object in the __objects dictionary with"\
+        "a key of <obj class name>.id"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 

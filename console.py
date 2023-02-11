@@ -4,12 +4,14 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     """Class for the HBNB interpreter"""
-    # dictionary of classes because reading the next requirement after finishing one was
-    # a stupid idea, plus unlocked advanced to save me some sanity refactoring code
+    # dictionary of classes because I did not read the next requirement
+    # one was a stupid idea on my part, plus unlocked advanced
+    # to save me some sanity refactoring code
     __classes = {
-    "BaseModel"
+        "BaseModel",
     }
 
     def do_quit(self, line):
@@ -31,7 +33,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Creates a new instance of BaseModel, saves it to the given JSON file and prints its id"""
+        """Creates a new instance of BaseModel, saves it to the given JSON"\
+        "file and prints its id"""
         class_name = args.split()
         if not args:
             print("** class name missing **")
@@ -46,7 +49,8 @@ class HBNBCommand(cmd.Cmd):
             print(new_model.id)
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on its class name and id"""
+        """Prints the string representation of an instance based on"\
+        "its class name and id"""
         class_name = args.split()
         if not args:
             print("** class name missing **")
@@ -64,7 +68,8 @@ class HBNBCommand(cmd.Cmd):
         print(storage.all()[key])
 
     def do_destroy(self, args):
-        """Destroy/delete an instance based on the given class name and id from the JSON file given"""
+        """Destroy/delete an instance based on the given class"\
+        "name and id from the JSON file given"""
         class_name = args.split()
         if not args:
             print("** class name missing **")
@@ -83,8 +88,20 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, args):
-        """Prints all string representation of all instances based (or not) on the class name"""
-        
-        
+        """Prints all string representation of all"\
+        "instances based (or not) on the class name"""
+        args = args.split()
+        if not args:
+            print([str(value) for key, value in storage.all().items()])
+        elif args[0] not in self.__classes:
+            print("** class doesn't exist **")
+        else:
+            print([str(value) for key,
+                   value in storage.all.items() if key.startswith(args[0])])
+
+    def do_update(self, args):
+        """Updates an instance based on the class name"""
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

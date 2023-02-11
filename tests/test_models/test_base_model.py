@@ -4,6 +4,7 @@ import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 import json
+import pycodestyle
 
 class BaseModel_test(unittest.TestCase):
     """test class for the BaseModel class"""
@@ -62,3 +63,9 @@ class BaseModel_test(unittest.TestCase):
         self.assertTrue(isinstance(kwargs2, BaseModel))
         self.assertTrue(isinstance(jsonModel, dict))
         self.assertTrue(kwargs is not kwargs2)
+
+    def test_pycodestyle(self):
+        """Test if code conforms to pycodestyle"""
+        pycode = pycodestyle.StyleGuide()
+        results = pycode.check_files(["models/base_model.py"])
+        self.assertEqual(results.total_errors, 0)
