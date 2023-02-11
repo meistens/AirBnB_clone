@@ -47,22 +47,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """Prints the string representation of an instance based on its class name and id"""
+        class_name = args.split()
         if not args:
             print("** class name missing **")
             return
-        args = args.split()
-        print(args)
-        print("++++++++++++++++++++++++++++++++")
-        if len(args) < 2:
+        if len(class_name) < 2:
             print("** instance id missing **")
-            print(len(args))
-            print("-----------------------------")
             return
-        class_name = args[0]
-        if class_name not in self.__classes:
+        if class_name[0] not in self.__classes:
             print("** class doesn't exist **")
-            print(class_name)
-            print("================================")
             return
         key = "{}.{}".format(class_name, args[1])
         if key not in storage.all():
@@ -72,15 +65,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         """Destroy/delete an instance based on the given class name and id from the JSON file given"""
+        class_name = args.split()
         if not args:
             print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name != "BaseModel":
+        if class_name[0] not in self.__classes:
             print("** class doesn't exist **")
             return
-        args = args.split()
-        if len(args) == 1:
+        if len(class_name) < 2:
             print("** instance id missing **")
             return
         key = "{}.{}".format(class_name, args[1])
