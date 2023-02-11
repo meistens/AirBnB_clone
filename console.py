@@ -6,6 +6,11 @@ from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """Class for the HBNB interpreter"""
+    # dictionary of classes because reading the next requirement after finishing one was
+    # a stupid idea, plus unlocked advanced to save me some sanity refactoring code
+    __classes = {
+    "BaseModel"
+    }
 
     def do_quit(self, line):
         """Command to exit the program"""
@@ -13,6 +18,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Command handler that exits the program quietly"""
+        return True
+
+    def do_exit(self, line):
+        """Command to exit, you're welcome"""
         return True
 
     prompt = '(hbnb) '
@@ -23,12 +32,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it to the given JSON file and prints its id"""
-        class_name = args.strip()
+        class_name = args.split()
         if not args:
             print("** class name missing **")
             return
-        elif class_name != "BaseModel":
+        elif class_name[0] not in self.__classes:
             print("** class doesn't exist **")
+            # print(args)
             return
         else:
             new_model = BaseModel()
@@ -73,6 +83,10 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         else:
             print("** no instance found **")
+
+    def do_all(self, args):
+        """Prints all string representation of all instances based (or not) on the class name"""
+        
         
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
