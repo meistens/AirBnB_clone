@@ -3,6 +3,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
     # to save me some sanity refactoring code
     __classes = {
         "BaseModel",
+        "User",
     }
 
     def do_quit(self, line):
