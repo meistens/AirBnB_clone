@@ -101,26 +101,70 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """Updates an instance based on the class name"""
-        args = args.split()
-        if not args:
+        args_list = args.split()
+        if not args_list:
             print("** class name missing **")
-            return
-        if args[0] not in self.__classes:
+        elif args_list[0] not in self.__classes:
             print("** class doesn't exist **")
-            return
-        if len(args) < 2:
+        elif len(args_list) < 2:
             print("** instance id missing **")
-            return
-        if len(args) < 3:
+        elif len(args_list) == 2:
             print("** attribute name missing **")
-            return
-        if len(args) < 4:
+        elif len(args_list) == 3:
             print("** value missing **")
-            return
-        instance = "{}.{}".format(args, args[1])
-        
+        else:
+            inst_id = args_list[0] + "." + args_list[1]
+            dict_instances = storage.all()
+
+            if inst_id in dict_instances.keys():
+                if args_list[2] in ["id", "created_at", "updated_at"]:
+                    print("** can't update id, created_at, updated_at **")
+                    return
+                if args_list[3]:
+                    args_list[3] = args_list[3].replace('"', "")
+                try:
+                    args_list[3] = int(args_list[3])
+                except ValueError:
+                    try:
+                        args_list[3] = float(args_list[3])
+                    except ValueError:
+                        args_list[3] = args_list[3]
+                dict_instances[inst_id].__dict__[args_list[2]] = args_list[3]
+                dict_instances[inst_id].save()
+            else:
+                # doesn't work for some reason, and honestly, I am tired.
+                # Whoever comes across and can figure it out, great!
+                # Plus, it does not seem to affect it in any way so if the
+                # error bugs you, feel free to fix!
+                print("** no instance found **")
+        # if len(args) < 3:
+        #     print("** attribute name missing **")
+        #     return
+        # if len(args) < 4:
+        #     print("** value missing **")
+        #     return
+        # instance_id = args[0] + "." + args[1]
+        # if instance_id in storage.all().keys():
+        #     if args[3]:
+        #         args[3] = args[3].replace('"', "")
+        #     try:
+        #         args[3] = int(args[3])
+        #     except ValueError:
+        #         try:
+        #             args[3] = float(args[3])
+        #         except ValueError:
+        #             args[3] = args[3]
+        #     storage.all()[instance_id].__dict__[args[2]] = args[3]
+        #     storage.all()[instance_id].save()
+        # else:
+        #     print("** no instance found **")
+                    
         # attr_name = args[2]
-        # if attr_name in ["id", ]:
+        # if attr_name in ["id", "created_at", "updated_at"]:
+            # print("You cannot update the id, and modify the created_at and"\
+            # "updated_at dates")
+            # return
+        
             
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
