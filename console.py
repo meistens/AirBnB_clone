@@ -48,11 +48,11 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it to the given JSON"\
         "file and prints its id"""
-        class_name = args.split()
+        args = args.split()
         if not args:
             print("** class name missing **")
             return
-        elif class_name[0] not in self.__classes:
+        elif args[0] not in self.__classes:
             print("** class doesn't exist **")
             # print(args)
             return
@@ -64,17 +64,17 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         """Prints the string representation of an instance based on"\
         "its class name and id"""
-        class_name = args.split()
+        args = args.split()
         if not args:
             print("** class name missing **")
             return
-        if len(class_name) < 2:
+        if len(args) < 2:
             print("** instance id missing **")
             return
-        if class_name[0] not in self.__classes:
+        if args[0] not in self.__classes:
             print("** class doesn't exist **")
             return
-        key = "{}.{}".format(class_name, args[1])
+        key = "{}.{}".format(args[0], args[1])
         if key not in storage.all():
             print("** no instance found **")
             return
@@ -83,17 +83,17 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """Destroy/delete an instance based on the given class"\
         "name and id from the JSON file given"""
-        class_name = args.split()
+        args = args.split()
         if not args:
             print("** class name missing **")
             return
-        if class_name[0] not in self.__classes:
+        if args[0] not in self.__classes:
             print("** class doesn't exist **")
             return
-        if len(class_name) < 2:
+        if len(args) < 2:
             print("** instance id missing **")
             return
-        key = "{}.{}".format(class_name[0], class_name[1])
+        key = "{}.{}".format(args[0], args[1])
         if key in storage.all():
             del storage.all()[key]
             storage.save()

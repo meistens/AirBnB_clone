@@ -4,6 +4,8 @@ import unittest
 import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
+
 
 class TestFileStorage(unittest.TestCase):
     """Class for testing FileStorage"""
@@ -17,3 +19,14 @@ class TestFileStorage(unittest.TestCase):
         save_file = BaseModel()
         save_file.save()
         self.assertEqual("", "")
+
+    def test_new(self):
+        """Tests new method of FileStorage"""
+        new = User()
+        FileStorage().new(new)
+        self.assertIn(new.__class__.__name__ + "." + new.id,
+                      FileStorage().all())
+
+    def test_all(self):
+        """Tests all methods of FileStorage"""
+        self.assertTrue(type(FileStorage().all()) == dict)

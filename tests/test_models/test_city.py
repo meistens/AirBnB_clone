@@ -4,6 +4,7 @@ import unittest
 import pycodestyle
 from models.city import City
 
+
 class City_test(unittest.TestCase):
     """test class for city class"""
     def test_doc(self):
@@ -15,7 +16,7 @@ class City_test(unittest.TestCase):
         """Tests the __str__ is correct"""
         strFormat = City()
         str_format = "[City] ({}) {}".format(strFormat.id,
-                                                strFormat.__dict__)
+                                             strFormat.__dict__)
         self.assertEqual(str_format, str(strFormat))
 
     def test_dict(self):
@@ -26,8 +27,8 @@ class City_test(unittest.TestCase):
         for attr in dicts.__dict__:
             self.assertTrue(attr in to_dict)
 
-    def test_amenity(self):
-        """Tests if amenity just works"""
+    def test_ciry(self):
+        """Tests if city just works"""
         foo = City()
         self.assertEqual(type(foo).__name__, "City")
 

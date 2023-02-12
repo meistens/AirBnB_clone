@@ -6,8 +6,8 @@ import models
 
 
 class BaseModel():
-    """This class defines the behaviours of all properties/methods and"\
-    "attributes for other classes"""
+    """This class defines the behaviours of all properties/methods and
+    attributes for other classes"""
     def __init__(self, *args, **kwargs):
         """Public instance attributes for initializing a new BaseModel"""
         self.id = str(uuid4())
@@ -38,8 +38,8 @@ class BaseModel():
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all key/value pairs of __dict__"\
-        "of the instance"""
+        """returns a dictionary containing all key/value pairs of __dict__
+        of the instance"""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()
