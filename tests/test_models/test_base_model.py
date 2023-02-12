@@ -14,16 +14,20 @@ class BaseModel_test(unittest.TestCase):
         self.assertGreater(len(docs), 1)
 
     def test_datetime(self):
-        """compares the created_at and updated_at dates (should not be the same)"""
+        """compares the created_at and updated_at
+        dates (should not be the same)"""
         created_at_date = BaseModel()
         updated_at_date = BaseModel()
-        self.assertNotEqual(created_at_date.created_at, updated_at_date.updated_at)
-        self.assertNotEqual(updated_at_date.created_at, created_at_date.updated_at)
+        self.assertNotEqual(created_at_date.created_at,
+                            updated_at_date.updated_at)
+        self.assertNotEqual(updated_at_date.created_at,
+                            created_at_date.updated_at)
 
     def test_str_format(self):
-        """Tests if the __str__is correct (it should be)"""
+        """Tests if the __str__ is correct (it should be)"""
         strFormat = BaseModel()
-        str_format = "[BaseModel] ({}) {}".format(strFormat.id, strFormat.__dict__)
+        str_format = "[BaseModel] ({}) {}".format(strFormat.id,
+                                                  strFormat.__dict__)
         self.assertEqual(str_format, str(strFormat))
 
     def test_uuid(self):
@@ -33,7 +37,7 @@ class BaseModel_test(unittest.TestCase):
         self.assertNotEqual(uuid_1.id, uuid_2.id)
 
     def test_dict(self):
-        """Tests if dict is a dictionary """
+        """Tests if dict is a dictionary"""
         serial = BaseModel()
         self.assertTrue(dict, type(serial.to_dict()))
 
@@ -54,7 +58,7 @@ class BaseModel_test(unittest.TestCase):
         self.assertIn("number", attr.to_dict())
 
     def test_kwargs(self):
-        """Test kwargs arttributes (the script won't cut it)"""
+        """Test kwargs arttributes (the script won't cut it I suppose...)"""
         kwargs = BaseModel()
         kwargs.name = "foo"
         kwargs.number = 3
@@ -69,3 +73,10 @@ class BaseModel_test(unittest.TestCase):
         pycode = pycodestyle.StyleGuide()
         results = pycode.check_files(["models/base_model.py"])
         self.assertEqual(results.total_errors, 0)
+
+    def test_save(self):
+        """Tests if the generated data is saved to JSON"""
+        save = BaseModel()
+        save.save()
+        with open("file.json", "r") as f:
+            self.assertIn(save.id, f.read())
