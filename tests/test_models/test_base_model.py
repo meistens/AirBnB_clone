@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 import json
 import pycodestyle
 
+
 class BaseModel_test(unittest.TestCase):
     """test class for the BaseModel class"""
     def test_doc(self):

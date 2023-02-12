@@ -4,6 +4,7 @@ import unittest
 import pycodestyle
 from models.amenity import Amenity
 
+
 class Amenity_test(unittest.TestCase):
     """test class for amenity class"""
     def test_doc(self):
