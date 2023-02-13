@@ -18,13 +18,13 @@ class HBNBCommand(cmd.Cmd):
     # one was a stupid idea on my part, plus unlocked advanced
     # to save me some sanity refactoring code
     __classes = {
-        "BaseModel",
-        "User",
-        "Amenity",
-        "City",
-        "Place",
-        "Review",
-        "State"
+        'BaseModel': BaseModel,
+        'User': User,
+        'Amenity': Amenity,
+        'City': City,
+        'Place': Place,
+        'Review': Review,
+        'State': State
     }
 
     def do_quit(self, line):
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             # print(args)
             return
         else:
-            new_model = BaseModel()
+            new_model = self.__classes[args[0]]()
             new_model.save()
             print(new_model.id)
 
@@ -68,11 +68,11 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif len(args) < 2:
-            print("** instance id missing **")
-            return
         elif args[0] not in self.__classes:
             print("** class doesn't exist **")
+            return
+        elif len(args) < 2:
+            print("** instance id missing **")
             return
         key = "{}.{}".format(args[0], args[1])
         if key not in storage.all():
@@ -87,10 +87,10 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in self.__classes:
+        elif args[0] not in self.__classes:
             print("** class doesn't exist **")
             return
-        if len(args) < 2:
+        elif len(args) < 2:
             print("** instance id missing **")
             return
         key = "{}.{}".format(args[0], args[1])
