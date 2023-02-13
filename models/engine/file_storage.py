@@ -9,6 +9,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
+
 class FileStorage():
     """A private class for the serialization and deserialization class of
     objects to a JSON file"""
