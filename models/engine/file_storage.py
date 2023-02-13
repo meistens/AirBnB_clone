@@ -9,7 +9,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
-
 class FileStorage():
     """A private class for the serialization and deserialization class of
     objects to a JSON file"""
@@ -28,19 +27,21 @@ class FileStorage():
 
     def save(self):
         """Serializes the __objects to the JSON file"""
-        obj_dict = {obj: self.__objects[obj].to_dict() for
-                    obj in self.__objects.keys()}
-        with open(self.__file_path) as f:
-            json.dump(obj_dict, f)
+        emp_dict = {}
+
+        for key, value in self.__objects.items():
+            emp_dict[key] = value.to_dict()
+        with open(self.__file_path, "w") as f:
+            json.dump(emp_dict, f)
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, "r") as f:
-                obj_dict = json.load(f)
-                for value in obj_dict.values():
+                self.__objects = json.load(f)
+                for key, value in self.__objects.items():
                     class_name = value["__class__"]
-                    del class_name
-                    self.new(eval(class_name)(**value))
+                    obj = eval(class_name + "(**value)")
+                    self.__objects[key] = obj
         except FileNotFoundError:
-            return
+            pass
