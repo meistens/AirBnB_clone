@@ -79,10 +79,10 @@ meistens@bearded-fedora:~/AirBnB$ ./console.py
 ```
 
 ### Contact Information
-TBA or check the AUTHORS file [[./AUTHORS]]
+[AUTHORS](./AUTHORS.md)
 
 ### License Information
-[[./LICENSE]]
+Anyone can use it but if you want to read the fineprints, check [GNU GPL-3.0](./LICENSE) license
 
 ### Acknowledgements
-ALX_Africa
+[ALX_Africa](https://twitter.com/alx_africa)
