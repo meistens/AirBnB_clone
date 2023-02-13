@@ -11,7 +11,6 @@ from models.review import Review
 from models.state import State
 
 
-
 class HBNBCommand(cmd.Cmd):
     """Class for the HBNB interpreter"""
     # dictionary of classes because I did not read the next requirement
@@ -111,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             return
         print([str(value) for key,
                value in storage.all().items() if key.startswith(args)])
-        
+
     def do_update(self, args):
         """Updates an instance based on the class name"""
         args_list = args.split()
@@ -171,13 +170,13 @@ class HBNBCommand(cmd.Cmd):
         #     storage.all()[instance_id].save()
         # else:
         #     print("** no instance found **")
-                    
+
         # attr_name = args[2]
         # if attr_name in ["id", "created_at", "updated_at"]:
             # print("You cannot update the id, and modify the created_at and"\
             # "updated_at dates")
             # return
-        
-            
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
