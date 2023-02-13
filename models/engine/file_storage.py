@@ -9,7 +9,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
-
 class FileStorage():
     """A private class for the serialization and deserialization class of
     objects to a JSON file"""
@@ -29,6 +28,7 @@ class FileStorage():
     def save(self):
         """Serializes the __objects to the JSON file"""
         emp_dict = {}
+        
         for key, value in self.__objects.items():
             emp_dict[key] = value.to_dict()
         with open(self.__file_path, "w") as f:
